@@ -1,5 +1,6 @@
-import React, { component } from "react";
-import Aux from "../Aux/Aux";
+import React, { Component } from "react";
+import NavigationItems from "../component/Navigation/NavigationItems";
+import Aux from "./Aux";
 
 class Layout extends Component {
   state = {
@@ -9,7 +10,7 @@ class Layout extends Component {
     return (
       <Aux>
         <NavigationItems />
-        {this.props.children}
+        <main>{this.props.children}</main>
       </Aux>
     );
   }
