@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavigationItems from "../component/Navigation/NavigationItems";
-import Aux from "./Aux";
+import Aux from "./Auxiliary";
 
 class Layout extends Component {
   state = {
