@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Input from "../component/UI/Input/Input";
+import * as actions from "../store/actions/index";
 
 class Login extends Component {
   state = {
@@ -79,6 +81,14 @@ class Login extends Component {
     };
     this.setState({ controls: updatedControls });
   };
+  submitHandler = event => {
+    event.preventDefault();
+    this.props.onAuth(
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      false
+    );
+  };
 
   render() {
     const formElementsArray = [];
@@ -104,7 +114,7 @@ class Login extends Component {
 
     return (
       <div>
-        <form>
+        <form onSubmit={this.submitHandler}>
           {form}
           <button className="btn btn-primary">Log in</button>
         </form>
@@ -113,4 +123,24 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error,
+    isAuthenticated: state.auth.token !== null,
+    authRedirectPath: state.auth.authRedirectPath
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password, isSignup) =>
+      dispatch(actions.auth(email, password, isSignup)),
+    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/"))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
