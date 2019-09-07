@@ -9,7 +9,7 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <NavigationItems />
+        {/* <NavigationItems /> */}
         <main>{this.props.children}</main>
       </Aux>
     );

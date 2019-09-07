@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Input from "../component/UI/Input/Input";
 import * as actions from "../store/actions/index";
+import NavigationItem from "../component/Navigation/NavigationItem/NavigationItem";
 
 class Signup extends Component {
   state = {
@@ -114,6 +115,13 @@ class Signup extends Component {
 
     return (
       <div>
+        <ul className="nav justify-content-end">
+          <li className="nav-item">
+            <NavigationItem link="/" exact>
+              Log in
+            </NavigationItem>
+          </li>
+        </ul>
         <form onSubmit={this.submitHandler}>
           {form}
           <button className="btn btn-primary">Sign up</button>
