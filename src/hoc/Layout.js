@@ -1,18 +1,22 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import NavigationItems from "../component/Navigation/NavigationItems";
 import Aux from "./Auxiliary";
 
 class Layout extends Component {
-  state = {
-    isAuthenticated: false
-  };
   render() {
+    const nav = this.props.isAuthenticated ? <NavigationItems /> : null;
     return (
       <Aux>
-        {/* <NavigationItems /> */}
+        {nav}
         <main>{this.props.children}</main>
       </Aux>
     );
   }
 }
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+export default connect(mapStateToProps)(Layout);

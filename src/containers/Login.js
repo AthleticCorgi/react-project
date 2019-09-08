@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import Input from "../component/UI/Input/Input";
 import * as actions from "../store/actions/index";
 import NavigationItem from "../component/Navigation/NavigationItem/NavigationItem";
@@ -112,9 +113,13 @@ class Login extends Component {
         changed={event => this.inputChangedHandler(event, formElement.id)}
       />
     ));
-
+    let authRedirect = null;
+    if (this.props.isAuthenticated) {
+      authRedirect = <Redirect to="/search" />;
+    }
     return (
       <div>
+        {authRedirect}
         <ul className="nav justify-content-end">
           <li className="nav-item">
             <NavigationItem link="/signup">Sign up</NavigationItem>
