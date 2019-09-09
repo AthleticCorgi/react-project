@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import Input from "../component/UI/Input/Input";
 import * as actions from "../store/actions/index";
 import NavigationItem from "../component/Navigation/NavigationItem/NavigationItem";
+import logo from "../assets/images/logo.png";
 
 class Login extends Component {
   state = {
@@ -117,18 +118,75 @@ class Login extends Component {
     if (this.props.isAuthenticated) {
       authRedirect = <Redirect to="/search" />;
     }
+    const imgStyle = {
+      height: "190px",
+      width: "auto",
+      display: "block",
+      marginLeft: "auto",
+      marginRight: "auto"
+    };
+    const navStyle = {
+      paddingTop: "50px",
+      paddingRight: "40px"
+    };
+    const spanStyle = {
+      color: "#5a5c5e"
+    };
+    const spanStyleMotto = {
+      fontSize: "37px",
+      paddingLeft: "14px",
+      color: "#5a5c5e"
+    };
+    const buttonStyle = {
+      marginRight: "10px",
+      backgroundColor: "#5d83a6",
+      borderColor: "#9da2a6",
+      width: "23%"
+    };
+    const divStyle = {
+      paddingTop: "5%"
+    };
+    const spaceDivStyle = {
+      paddingBottom: "20px"
+    };
+    const borderDivStyle = {
+      border: "solid",
+      borderColor: "#4a8bc0",
+      margin: "0.2%",
+      paddingBottom: "15%",
+      borderWidth: "thin"
+    };
     return (
-      <div>
+      <div style={borderDivStyle}>
         {authRedirect}
         <ul className="nav justify-content-end">
-          <li className="nav-item">
-            <NavigationItem link="/signup">Sign up</NavigationItem>
+          <li className="nav-item" style={navStyle}>
+            <NavigationItem link="/signup">
+              <span style={spanStyle}>Sign up</span>
+            </NavigationItem>
           </li>
         </ul>
-        <form onSubmit={this.submitHandler}>
-          {form}
-          <button className="btn btn-primary">Log in</button>
-        </form>
+        <div className="row">
+          <div className="col-4"></div>
+          <div className="col-4" style={divStyle}>
+            <img src={logo} style={imgStyle} />
+            <br></br>
+            <span style={spanStyleMotto}>
+              Building Product Selection Platform
+            </span>
+            <div style={spaceDivStyle}></div>
+            <form onSubmit={this.submitHandler}>
+              {form}
+              <button
+                className="btn btn-primary float-right"
+                style={buttonStyle}
+              >
+                Log in
+              </button>
+            </form>
+          </div>
+          <div className="col-4"></div>
+        </div>
       </div>
     );
   }
